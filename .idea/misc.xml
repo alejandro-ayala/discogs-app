@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_main.xml" value="0.11730072463768115" />
+        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/list_row.xml" value="0.17291666666666666" />
+        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/recyclerview_row.xml" value="0.18697916666666667" />
       </map>
     </option>
   </component>

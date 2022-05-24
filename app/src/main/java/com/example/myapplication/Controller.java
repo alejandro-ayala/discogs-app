@@ -4,9 +4,12 @@ package com.example.myapplication;
 import android.util.Log;
 
 import com.example.myapplication.data.model.Discogs;
+import com.example.myapplication.data.model.Result;
 import com.example.myapplication.data.model.remote.DiscogsAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,23 +20,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Controller implements Callback<Discogs> {
     static final String BASE_URL = "https://api.discogs.com/database/";
     public void start(){
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        String title = "nevermind";
-        String artist = "nirvana";
-        String token = "CJksBcZlIjbFjXTOjtlAJHmdhZcBmMIMgKLwBWeF";
 
         DiscogsAPI discogsAPI = retrofit.create(DiscogsAPI.class);
         System.out.println("getResponse");
-        //Call<Discogs> call = discogsAPI.getResponse("nirvana");
-        Call<Discogs> call = discogsAPI.getResponse();
+        String artist = "nirvana";
+        String title = "nevermind";
+        String token = "CJksBcZlIjbFjXTOjtlAJHmdhZcBmMIMgKLwBWeF";
+        String per_page = "3";
+        String page = "1";
+
+
+        Call<Discogs> call = discogsAPI.getResponse(title,artist,per_page,page,token);
+        //Call<Discogs> call = discogsAPI.getResponse();
         System.out.println("getResponse done!");
         call.enqueue(this);
 
@@ -46,8 +54,10 @@ public class Controller implements Callback<Discogs> {
         if(response.isSuccessful()) {
             System.out.println("onResponse isSuccessful");
             Discogs discogsResponse = response.body();
-            assert discogsResponse != null;
-            System.out.println("response: " + discogsResponse.toString());
+            List<Discogs.Result> results = discogsResponse.getResults();
+
+            results.forEach(result -> System.out.println(result.getCountry()));
+
         } else {
             System.out.println("onResponse errorBody");
             System.out.println(response.errorBody());
