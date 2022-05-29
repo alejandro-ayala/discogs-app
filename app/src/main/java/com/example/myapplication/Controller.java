@@ -4,11 +4,11 @@ package com.example.myapplication;
 import android.util.Log;
 
 import com.example.myapplication.data.model.Discogs;
-import com.example.myapplication.data.model.Result;
 import com.example.myapplication.data.model.remote.DiscogsAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,8 +18,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller implements Callback<Discogs> {
+    private static final String TAG = "Controller";
+    DiscogsAPI discogsAPI;
     static final String BASE_URL = "https://api.discogs.com/database/";
-    public void start(){
+
+    public void startRetrofitService(){
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -31,35 +34,24 @@ public class Controller implements Callback<Discogs> {
                 .build();
 
 
-        DiscogsAPI discogsAPI = retrofit.create(DiscogsAPI.class);
-        System.out.println("getResponse");
-        String artist = "nirvana";
-        String title = "nevermind";
-        String token = "CJksBcZlIjbFjXTOjtlAJHmdhZcBmMIMgKLwBWeF";
-        String per_page = "3";
-        String page = "1";
-
-
-        Call<Discogs> call = discogsAPI.getResponse(title,artist,per_page,page,token);
-        //Call<Discogs> call = discogsAPI.getResponse();
-        System.out.println("getResponse done!");
-        call.enqueue(this);
+        discogsAPI = retrofit.create(DiscogsAPI.class);
 
     }
     @Override
     public void onResponse(Call<Discogs> call, Response<Discogs> response){
-        System.out.println("onResponse");
-        Log.d("Call request", call.request().toString());
-        Log.d("Call request header", call.request().headers().toString());
+        Log.d(TAG, "onResponse");
+
         if(response.isSuccessful()) {
-            System.out.println("onResponse isSuccessful");
+            Log.d(TAG, "onResponse isSuccessful");
+
             Discogs discogsResponse = response.body();
             List<Discogs.Result> results = discogsResponse.getResults();
+            Log.d(TAG,results.get(0).getTitle());
 
-            results.forEach(result -> System.out.println(result.getCountry()));
+            RetrofitObservable.getInstance(). notifyObserverWithResponse(results);
 
         } else {
-            System.out.println("onResponse errorBody");
+            Log.d(TAG, "onResponse errorBody");
             System.out.println(response.errorBody());
             System.out.println("ERROR "+response.raw().body());
         }
@@ -67,11 +59,28 @@ public class Controller implements Callback<Discogs> {
     @Override
     public void onFailure(Call<Discogs> call, Throwable t){
         System.out.println("onFailure");
+        Log.d(TAG, "onFailure");
+
         Log.d("Call request", call.request().toString());
         Log.d("Call request header", call.request().headers().toString());
 
         t.printStackTrace();
     }
+
+    public void requestDiscogsSearch(DiscogsSearchParameter searchRequest){
+        Log.d(TAG, "requestDiscogsSearch");
+        List<DiscogsViewModel> searchResponse = new ArrayList<DiscogsViewModel>();
+
+        String token = "CJksBcZlIjbFjXTOjtlAJHmdhZcBmMIMgKLwBWeF";
+        String title = searchRequest.getTitle();
+        String artistName = searchRequest.getArtistName();
+        String page = "1";
+        String perPage = "10";
+        Call<Discogs> call = discogsAPI.getResponse(title,artistName,perPage,page,token);
+        call.enqueue(this);
+
+    }
+
 }
 
 

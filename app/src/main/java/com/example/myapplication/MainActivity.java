@@ -1,40 +1,42 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    MyAdapterRecycledView myAdapterRecycledView;
+    public static final String ARTIST_TO_SEARCH = "artist";
+    public static final String TITLE_TO_SEARCH = "title";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
+    }
 
-        DiscogsViewModel nirvana = new DiscogsViewModel("Nirvana");
-        requestList.add(nirvana);
-        DiscogsViewModel acdc = new DiscogsViewModel("ACDC");
-        requestList.add(acdc);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    public void searchDisc(View view) {
+        // Do something in response to button click
+        Log.d(TAG, "Search disc!!");
 
-        myAdapterRecycledView = new MyAdapterRecycledView(this, requestList);
-        //myAdapterRecycledView.setClickListener(this);
-        recyclerView.setAdapter(myAdapterRecycledView);
+        Intent intent = new Intent(this,SearchActivity.class);
 
+        EditText etArtist = (EditText)findViewById(R.id.etArtist);
+        EditText etTitle = (EditText)findViewById(R.id.etTitle);
+        String artist = etArtist.getText().toString();
+        String title = etTitle.getText().toString();
 
-        Controller controller = new Controller();
-        controller.start();
+        Log.d(TAG,  artist);
+        Log.d(TAG,  title);
+        intent.putExtra(ARTIST_TO_SEARCH,artist);
+        intent.putExtra(TITLE_TO_SEARCH,title);
+        startActivity(intent);
 
-        myAdapterRecycledView.setDiscogsData(requestList);
     }
 }
