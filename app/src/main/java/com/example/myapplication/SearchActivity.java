@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.data.model.Discogs;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-public class SearchActivity extends AppCompatActivity implements Observer {
+public class SearchActivity extends AppCompatActivity {
 
     public static final String TAG = "SearchActivity";
+    public static final String ARTIST_TO_SEARCH = "artist";
+    public static final String TITLE_TO_SEARCH = "title";
     MyAdapterRecycledView myAdapterRecycledView;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -29,49 +24,27 @@ public class SearchActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.search_activity);
 
         Intent intent = getIntent();
-        String artist = intent.getStringExtra(MainActivity.ARTIST_TO_SEARCH);
-        String title = intent.getStringExtra(MainActivity.TITLE_TO_SEARCH);
 
-        controller.startRetrofitService();
-
-        DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title);
-        controller.requestDiscogsSearch(searchRequest);
     }
+    public void searchDisc(View view) {
+        // Do something in response to button click
+        Log.d(TAG, "Search disc!!");
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        RetrofitObservable.getInstance().addObserver(this);
+        Intent intent = new Intent(this,ResultsActivity.class);
+
+        EditText etArtist = (EditText)findViewById(R.id.etArtist);
+        EditText etTitle = (EditText)findViewById(R.id.etTitle);
+        String artist = etArtist.getText().toString();
+        String title = etTitle.getText().toString();
+
+        Log.d(TAG,  artist);
+        Log.d(TAG,  title);
+        intent.putExtra(ARTIST_TO_SEARCH,artist);
+        intent.putExtra(TITLE_TO_SEARCH,title);
+        startActivity(intent);
+
     }
-
-    @Override
-    public void onPause() {
-        super.onResume();
-        RetrofitObservable.getInstance().deleteObserver(this);
-    }
-    @Override
-    public void update(Observable o, Object arg) {
-        List<Discogs.Result> response = (List<Discogs.Result>) arg;
-        Log.d(TAG, "Observable update");
-        Log.d(TAG,response.get(0).getTitle());
-
-        List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
-
-        for (Discogs.Result element : response) {
-            DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),element.getCountry(), element.getYear(),element.getCoverImage());
-            requestList.add(newItem);
-        }
-
-
-        recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this);
-        myAdapterRecycledView = new MyAdapterRecycledView(this, requestList);
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(myAdapterRecycledView);
-
-    }    
 }
