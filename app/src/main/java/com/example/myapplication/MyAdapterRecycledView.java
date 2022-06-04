@@ -19,7 +19,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
     private LayoutInflater mInflater;
     private List<DiscogsViewModel> mRequestList;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView title;
         private final TextView year;
         private ImageView cover;
@@ -30,6 +30,15 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
             title = (TextView) view.findViewById((R.id.tvTitle));
             year = (TextView) view.findViewById((R.id.tvYear));
             cover = view.findViewById(R.id.ivCover);
+            // Attach a click listener to the entire row view
+            view.setOnClickListener(this);
+        }
+        // Handles the row being being clicked
+        @Override
+        public void onClick(View view) {
+            int position = getAbsoluteAdapterPosition(); // gets item position
+            Log.d(TAG, "Onclick " + position );
+
         }
 
     }
@@ -53,7 +62,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + "set.");
+
         String title = mRequestList.get(position).getTitle();
         String year = mRequestList.get(position).getYearRelease();
         String cover = mRequestList.get(position).getCover();

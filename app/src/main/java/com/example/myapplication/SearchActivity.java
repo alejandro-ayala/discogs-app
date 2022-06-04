@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -72,7 +73,5 @@ public class SearchActivity extends AppCompatActivity implements Observer {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapterRecycledView);
 
-        //myAdapterRecycledView.setDiscogsData(requestList);
-        // make your changes here
     }    
 }
