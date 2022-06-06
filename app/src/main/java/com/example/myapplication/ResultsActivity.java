@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -39,13 +39,12 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         String artist = intent.getStringExtra(SearchActivity.ARTIST_TO_SEARCH);
         String title = intent.getStringExtra(SearchActivity.TITLE_TO_SEARCH);
 
+        favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
+
         controller.startRetrofitService();
 
         DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title);
         controller.requestDiscogsSearch(searchRequest);
-
-        favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
-
     }
 
     @Override
@@ -81,11 +80,15 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
         myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+
+                int position = recyclerView.getChildLayoutPosition(view);
+                String title = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTitle)).getText().toString();
+                String year = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvYear)).getText().toString();
+
                 Log.d(TAG, "onClick --> Save release to collection: " + position);
 
-
-                FavouriteMusicEntity music = new FavouriteMusicEntity("main saddfdfdve2sd","sdasd");
+                FavouriteMusicEntity music = new FavouriteMusicEntity(title,year);
                 favouriteMusicViewModel.insert(music);
             }
         });
