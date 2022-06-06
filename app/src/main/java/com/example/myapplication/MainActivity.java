@@ -6,22 +6,15 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
-import com.example.myapplication.memoryManager.FavouriteMusicViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
-        FavouriteMusicViewModel favouriteMusicViewModel;
-        favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
 
     }
 

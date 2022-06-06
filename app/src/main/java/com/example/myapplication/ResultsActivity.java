@@ -1,20 +1,20 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.data.model.Discogs;
+import com.example.myapplication.memoryManager.FavouriteMusicEntity;
+import com.example.myapplication.memoryManager.FavouriteMusicViewModel;
 
-import java.io.FileOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -24,7 +24,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
     public static final String TAG = "SearchActivity";
     MyAdapterRecycledView myAdapterRecycledView;
-
+    FavouriteMusicViewModel favouriteMusicViewModel;
     private RecyclerView.LayoutManager layoutManager;
 
     RecyclerView recyclerView;
@@ -43,6 +43,9 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
         DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title);
         controller.requestDiscogsSearch(searchRequest);
+
+        favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
+
     }
 
     @Override
@@ -75,7 +78,19 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         myAdapterRecycledView = new MyAdapterRecycledView(this, requestList);
 
         recyclerView.setLayoutManager(layoutManager);
+
+        myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick --> Save release to collection: " + position);
+
+
+                FavouriteMusicEntity music = new FavouriteMusicEntity("main saddfdfdve2sd","sdasd");
+                favouriteMusicViewModel.insert(music);
+            }
+        });
         recyclerView.setAdapter(myAdapterRecycledView);
+
 
     }
 

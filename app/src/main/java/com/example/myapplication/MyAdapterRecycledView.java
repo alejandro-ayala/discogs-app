@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +9,23 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.memoryManager.MemoryManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycledView.ViewHolder> {
+public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycledView.ViewHolder>
+        implements View.OnClickListener {
     private static final String TAG = "MyAdapterRecycledView";
     private LayoutInflater mInflater;
     private List<DiscogsViewModel> mRequestList;
+    private static Context mContext;
+    private View.OnClickListener listener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder  {
         private final TextView title;
         private final TextView year;
         private ImageView cover;
+
 
         public ViewHolder (View view) {
             super(view);
@@ -31,19 +33,6 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
             title = (TextView) view.findViewById((R.id.tvTitle));
             year = (TextView) view.findViewById((R.id.tvYear));
             cover = view.findViewById(R.id.ivCover);
-            // Attach a click listener to the entire row view
-            view.setOnClickListener(this);
-        }
-        // Handles the row being being clicked
-        @Override
-        public void onClick(View view) {
-            int position = getAbsoluteAdapterPosition(); // gets item position
-            Log.d(TAG, "Onclick " + position );
-            MemoryManager memoryManager = new MemoryManager();
-            String title = String.valueOf(this.title.getText());
-            String url = "www.com";
-
-           memoryManager.saveFavouriteRelease(title,url);
 
         }
 
@@ -51,6 +40,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
     public MyAdapterRecycledView(Context context, List<DiscogsViewModel> requestList) {
         this.mInflater = LayoutInflater.from(context);
         this.mRequestList = requestList;
+        mContext = context;
     }
 
     @Override
@@ -61,6 +51,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
 
         View view = inflater.inflate(R.layout.recyclerview_row, viewGroup , false);
 
+        view.setOnClickListener(this);
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -90,5 +81,15 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
     void setDiscogsData(List<DiscogsViewModel> discogsViewModel){
         this.mRequestList = discogsViewModel;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(listener != null) {
+            listener.onClick(v);
+        }
+    }
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 }
