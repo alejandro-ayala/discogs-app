@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.memoryManager.MemoryManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,6 +39,11 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         public void onClick(View view) {
             int position = getAbsoluteAdapterPosition(); // gets item position
             Log.d(TAG, "Onclick " + position );
+            MemoryManager memoryManager = new MemoryManager();
+            String title = String.valueOf(this.title.getText());
+            String url = "www.com";
+
+           memoryManager.saveFavouriteRelease(title,url);
 
         }
 

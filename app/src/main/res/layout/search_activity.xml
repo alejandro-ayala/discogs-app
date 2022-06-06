@@ -5,28 +5,40 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:orientation="vertical" >
+
     <EditText
         android:id="@+id/etArtist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/artist_search"
+        android:importantForAutofill="no"
+        android:inputType="text">
+
+        <requestFocus />
+    </EditText>
+
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/title_search"
+        android:importantForAutofill="no"
+        android:inputType="text">
+    </EditText>
+
     <EditText
         android:id="@+id/etFormat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/format_search"
+        android:importantForAutofill="no"
+        android:inputType="text">
+    </EditText>
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:onClick="searchDisc" />
+        android:onClick="searchDisc"
+        android:text="@string/search"/>
 
 </LinearLayout>

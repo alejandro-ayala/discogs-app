@@ -1,8 +1,11 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.data.model.Discogs;
 
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -73,7 +78,5 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         recyclerView.setAdapter(myAdapterRecycledView);
 
     }
-    public void saveFavouriteRelease() {
-        Log.d(TAG, "saveFavouriteRelease: ");
-    }
+
 }

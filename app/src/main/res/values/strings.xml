@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Myapplication</string>
+    <string name="app_name">Music search app</string>
+    <string name="artist_search">Artist</string>
+    <string name="title_search">Title</string>
+    <string name="format_search">Format</string>
+    <string name="search">Search</string>
 </resources>
