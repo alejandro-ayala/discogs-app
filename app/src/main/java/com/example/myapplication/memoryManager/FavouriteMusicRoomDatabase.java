@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 public abstract class FavouriteMusicRoomDatabase extends RoomDatabase{
     public static final String MUSIC_COLLECTION = FavouriteMusicEntity.TABLA + ".db";
 
-    public abstract IFavouriteMusicDAO grupoDAO();
+    public abstract IFavouriteMusicDAO userDAO();
 
     private static volatile FavouriteMusicRoomDatabase INSTANCE;
 
@@ -54,7 +54,7 @@ public abstract class FavouriteMusicRoomDatabase extends RoomDatabase{
                         public void run() {
                             // Populate the database in the background.
                             // If you want to start with more groups, just add them.
-                            IFavouriteMusicDAO dao = INSTANCE.grupoDAO();
+                            IFavouriteMusicDAO dao = INSTANCE.userDAO();
                         }
                     });
                 }

@@ -12,7 +12,7 @@ public class FavouriteMusicCollection {
 
     public FavouriteMusicCollection(Application application) {
         FavouriteMusicRoomDatabase db = FavouriteMusicRoomDatabase.getDatabase(application);
-        iItemDAO = db.grupoDAO();
+        iItemDAO = db.userDAO();
         ldList = iItemDAO.getAll();
     }
 
