@@ -25,6 +25,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
     public static final String TAG = "SearchActivity";
     MyAdapterRecycledView myAdapterRecycledView;
     FavouriteMusicViewModel favouriteMusicViewModel;
+    List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
     private RecyclerView.LayoutManager layoutManager;
 
     RecyclerView recyclerView;
@@ -64,8 +65,6 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         Log.d(TAG, "Observable update");
         Log.d(TAG,response.get(0).getTitle());
 
-        List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
-
         for (Discogs.Result element : response) {
             DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),element.getCountry(), element.getYear(),element.getCoverImage());
             requestList.add(newItem);
@@ -85,10 +84,11 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
                 int position = recyclerView.getChildLayoutPosition(view);
                 String title = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTitle)).getText().toString();
                 String year = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvYear)).getText().toString();
-
+                String cover = requestList.get(position).getCover();
+                String country = requestList.get(position).getCountry();
                 Log.d(TAG, "onClick --> Save release to collection: " + position);
 
-                FavouriteMusicEntity music = new FavouriteMusicEntity(title,year);
+                FavouriteMusicEntity music = new FavouriteMusicEntity(title,country,year,cover);
                 favouriteMusicViewModel.insert(music);
             }
         });

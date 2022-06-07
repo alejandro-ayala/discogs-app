@@ -10,12 +10,15 @@ public class FavouriteMusicEntity {
     @PrimaryKey(autoGenerate = true)
     protected int uid;
     protected String title;
+    protected String country;
     protected String year;
     protected String cover;
 
 
-    public FavouriteMusicEntity(String title, String cover) {
+    public FavouriteMusicEntity(String title, String country, String year, String cover) {
         this.title = title;
+        this.country = country;
+        this.year = year;
         this.cover = cover;
     }
 
