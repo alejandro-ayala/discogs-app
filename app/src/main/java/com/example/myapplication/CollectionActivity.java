@@ -6,7 +6,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.memoryManager.FavouriteMusicEntity;
@@ -44,9 +44,9 @@ public class CollectionActivity extends AppCompatActivity
 
             }
                 final RecyclerView recyclerView = findViewById(R.id.recyclerViewFavourite);
-                final MyAdapterRecycledView myAdapterRecycledView = new MyAdapterRecycledView(this,favouriteMusicList);
-                recyclerView.setAdapter(myAdapterRecycledView);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+                final adapterRecyclerViewFavourite favouriteRecycledView = new adapterRecyclerViewFavourite(this,favouriteMusicList);
+                recyclerView.setAdapter(favouriteRecycledView);
 
 
         });
