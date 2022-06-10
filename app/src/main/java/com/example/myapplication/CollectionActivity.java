@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -46,6 +47,14 @@ public class CollectionActivity extends AppCompatActivity
                 final RecyclerView recyclerView = findViewById(R.id.recyclerViewFavourite);
                 recyclerView.setLayoutManager(new GridLayoutManager(this,2));
                 final adapterRecyclerViewFavourite favouriteRecycledView = new adapterRecyclerViewFavourite(this,favouriteMusicList);
+            adapterRecyclerViewFavourite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int position = recyclerView.getChildLayoutPosition(view);
+                    Log.d(TAG, "onClick --> Save release to collection: " + position);
+                }
+            });
                 recyclerView.setAdapter(favouriteRecycledView);
 
 

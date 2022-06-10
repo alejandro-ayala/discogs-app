@@ -70,7 +70,9 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         TextView yearRelease = viewHolder.year;
         yearRelease.setText(year);
 
-        Picasso.get().load(cover).into(viewHolder.cover);
+        Picasso.get()
+                .load(cover).resize(700, 700).centerCrop()
+                .into(viewHolder.cover);
     }
 
     @Override

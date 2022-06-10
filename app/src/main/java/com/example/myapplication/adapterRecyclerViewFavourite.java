@@ -18,7 +18,7 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
     private LayoutInflater mInflater;
     private List<DiscogsViewModel> mRequestList;
     private static Context mContext;
-    private View.OnClickListener listener;
+    private static View.OnClickListener listener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder  {
         private ImageView cover;
@@ -56,7 +56,9 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
 
         String cover = mRequestList.get(position).getCover();
 
-        Picasso.get().load(cover).into(viewHolder.cover);
+        Picasso.get()
+                .load(cover).resize(700, 700).centerCrop()
+                .into(viewHolder.cover);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
             listener.onClick(v);
         }
     }
-    public void setOnClickListener(View.OnClickListener listener) {
-        this.listener = listener;
+    public static void setOnClickListener(View.OnClickListener onClickListener) {
+        listener = onClickListener;
     }
 }
