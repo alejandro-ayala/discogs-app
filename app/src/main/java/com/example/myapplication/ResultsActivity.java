@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +27,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
     MyAdapterRecycledView myAdapterRecycledView;
     FavouriteMusicViewModel favouriteMusicViewModel;
     List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
-    private RecyclerView.LayoutManager layoutManager;
+    private LinearLayoutManager layoutManager;
 
     RecyclerView recyclerView;
     Controller controller = new Controller();
@@ -70,11 +71,15 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
             requestList.add(newItem);
         }
 
-
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         myAdapterRecycledView = new MyAdapterRecycledView(this, requestList);
 
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+
+        recyclerView.addItemDecoration(mDividerItemDecoration);
+        
         recyclerView.setLayoutManager(layoutManager);
 
         myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
