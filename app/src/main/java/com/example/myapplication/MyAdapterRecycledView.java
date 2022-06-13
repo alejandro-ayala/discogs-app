@@ -14,16 +14,19 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycledView.ViewHolder>
-        implements View.OnClickListener {
+         {
     private static final String TAG = "MyAdapterRecycledView";
     private LayoutInflater mInflater;
     private List<DiscogsViewModel> mRequestList;
     private static Context mContext;
-    private View.OnClickListener listener;
+    //private View.OnClickListener listener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder  {
         private final TextView title;
         private final TextView year;
+        private final TextView label;
+        private final TextView format;
+        private final TextView country;
         private ImageView cover;
 
 
@@ -32,6 +35,9 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
             Context context = view.getContext();
             title = (TextView) view.findViewById((R.id.tvTitle));
             year = (TextView) view.findViewById((R.id.tvYear));
+            label = (TextView) view.findViewById((R.id.tvLabel));
+            format = (TextView) view.findViewById((R.id.tvFormat));
+            country = (TextView) view.findViewById((R.id.tvCountry));
             cover = view.findViewById(R.id.ivCover);
 
         }
@@ -51,7 +57,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
 
         View view = inflater.inflate(R.layout.recyclerview_row, viewGroup , false);
 
-        view.setOnClickListener(this);
+        //view.setOnClickListener(this);
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -63,13 +69,20 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         String title = mRequestList.get(position).getTitle();
         String year = mRequestList.get(position).getYearRelease();
         String cover = mRequestList.get(position).getCover();
+        String label = mRequestList.get(position).getLabel();
+        String format = mRequestList.get(position).getFormat();
+        String country = mRequestList.get(position).getCountry();
 
         TextView titleNameTextView = viewHolder.title;
         titleNameTextView.setText(title);
-
         TextView yearRelease = viewHolder.year;
         yearRelease.setText(year);
-
+        TextView labelTextView = viewHolder.label;
+        labelTextView.setText(label);
+        TextView formatTextView = viewHolder.format;
+        formatTextView.setText(format);
+        TextView countryTextView = viewHolder.country;
+        countryTextView.setText(country);
         Picasso.get()
                 .load(cover).resize(700, 700).centerCrop()
                 .into(viewHolder.cover);
@@ -85,8 +98,9 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         notifyDataSetChanged();
     }
 
+/*
     @Override
-    public void onClick(View v) {
+    public void addToCollection(View v) {
         if(listener != null) {
             listener.onClick(v);
         }
@@ -94,4 +108,6 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
+*/
+
 }

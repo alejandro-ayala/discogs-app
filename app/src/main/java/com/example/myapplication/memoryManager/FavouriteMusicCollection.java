@@ -31,4 +31,5 @@ public class FavouriteMusicCollection {
     public void delete(FavouriteMusicEntity item)  {
         iItemDAO.delete(item);
     }
+
 }

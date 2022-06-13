@@ -74,9 +74,12 @@ public class Controller implements Callback<Discogs> {
         String token = "CJksBcZlIjbFjXTOjtlAJHmdhZcBmMIMgKLwBWeF";
         String title = searchRequest.getTitle();
         String artistName = searchRequest.getArtistName();
+        String year = searchRequest.getYear();
+        String format = searchRequest.getFormat();
+
         String page = "1";
         String perPage = "10";
-        Call<Discogs> call = discogsAPI.getResponse(title,artistName,perPage,page,token);
+        Call<Discogs> call = discogsAPI.getResponse(title,artistName,perPage,page,year,format,token);
         call.enqueue(this);
 
     }

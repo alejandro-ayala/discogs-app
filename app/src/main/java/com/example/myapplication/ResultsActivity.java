@@ -40,12 +40,14 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         Intent intent = getIntent();
         String artist = intent.getStringExtra(SearchActivity.ARTIST_TO_SEARCH);
         String title = intent.getStringExtra(SearchActivity.TITLE_TO_SEARCH);
+        String format = intent.getStringExtra(SearchActivity.FORMAT_TO_SEARCH);
+        String year = intent.getStringExtra(SearchActivity.YEAR_TO_SEARCH);
 
         favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
 
         controller.startRetrofitService();
 
-        DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title);
+        DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title,format,year);
         controller.requestDiscogsSearch(searchRequest);
     }
 
@@ -67,7 +69,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         Log.d(TAG,response.get(0).getTitle());
 
         for (Discogs.Result element : response) {
-            DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),element.getCountry(), element.getYear(),element.getCoverImage());
+            DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),element.getCountry(), element.getYear(), element.getLabel().toString(), element.getCoverImage(),element.getFormat().toString());
             requestList.add(newItem);
         }
 
@@ -79,10 +81,11 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
                 layoutManager.getOrientation());
 
         recyclerView.addItemDecoration(mDividerItemDecoration);
-        
+
         recyclerView.setLayoutManager(layoutManager);
 
-        myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
+       /* myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -91,15 +94,35 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
                 String year = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvYear)).getText().toString();
                 String cover = requestList.get(position).getCover();
                 String country = requestList.get(position).getCountry();
+                String label = requestList.get(position).getLabel();
+                String format = requestList.get(position).getFormat();
                 Log.d(TAG, "onClick --> Save release to collection: " + position);
 
-                FavouriteMusicEntity music = new FavouriteMusicEntity(title,country,year,cover);
+                FavouriteMusicEntity music = new FavouriteMusicEntity(title,country,year,cover,label,format);
                 favouriteMusicViewModel.insert(music);
             }
-        });
+        });*/
         recyclerView.setAdapter(myAdapterRecycledView);
 
 
     }
 
+     public void addToCollection(View view) {
+         Log.d(TAG, "onClick --> addToCollection: " );
+
+         View parentRow = (View) view.getParent();
+         int position = layoutManager.getPosition(parentRow);
+
+         String title = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTitle)).getText().toString();
+         String year = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvYear)).getText().toString();
+         String cover = requestList.get(position).getCover();
+         String country = requestList.get(position).getCountry();
+         String label = requestList.get(position).getLabel();
+         String format = requestList.get(position).getFormat();
+         Log.d(TAG, "onClick --> Save release to collection: " + position);
+
+         FavouriteMusicEntity music = new FavouriteMusicEntity(title,country,year,cover,label,format);
+         favouriteMusicViewModel.insert(music);
+
+     }
 }

@@ -13,13 +13,17 @@ public class FavouriteMusicEntity {
     protected String country;
     protected String year;
     protected String cover;
+    protected String label;
+    protected String format;
 
-
-    public FavouriteMusicEntity(String title, String country, String year, String cover) {
+    public FavouriteMusicEntity(String title, String country, String year, String cover, String label, String format) {
         this.title = title;
         this.country = country;
         this.year = year;
         this.cover = cover;
+        this.label = label;
+        this.format = format;
+
     }
 
     public int getUid() {
@@ -36,6 +40,18 @@ public class FavouriteMusicEntity {
 
     public String getCover() {
         return cover;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void setTitle(String title) {

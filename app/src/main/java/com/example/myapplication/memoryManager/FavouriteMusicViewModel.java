@@ -34,4 +34,5 @@ public class FavouriteMusicViewModel extends AndroidViewModel {
     public void delete(FavouriteMusicEntity item) {
         mRepository.delete(item);
     }
+
 }
