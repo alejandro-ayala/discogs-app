@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.memoryManager.FavouriteMusicEntity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
         implements View.OnClickListener {
     private static final String TAG = "adapterRecyclerViewFavourite";
     private LayoutInflater mInflater;
-    private List<DiscogsViewModel> mRequestList;
+    private List<FavouriteMusicEntity> mFavouriteMusicCollection;
     private static Context mContext;
     private static View.OnClickListener listener;
 
@@ -31,9 +32,9 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
         }
 
     }
-    public adapterRecyclerViewFavourite(Context context, List<DiscogsViewModel> requestList) {
+    public adapterRecyclerViewFavourite(Context context, List<FavouriteMusicEntity> musicCollection) {
         this.mInflater = LayoutInflater.from(context);
-        this.mRequestList = requestList;
+        this.mFavouriteMusicCollection = musicCollection;
         mContext = context;
     }
 
@@ -54,7 +55,7 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        String cover = mRequestList.get(position).getCover();
+        String cover = mFavouriteMusicCollection.get(position).getCover();
 
         Picasso.get()
                 .load(cover).resize(700, 700).centerCrop()
@@ -63,12 +64,7 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
 
     @Override
     public int getItemCount() {
-        return mRequestList.size();
-    }
-
-    void setDiscogsData(List<DiscogsViewModel> discogsViewModel){
-        this.mRequestList = discogsViewModel;
-        notifyDataSetChanged();
+        return mFavouriteMusicCollection.size();
     }
 
     @Override
@@ -76,6 +72,10 @@ public class adapterRecyclerViewFavourite extends RecyclerView.Adapter <adapterR
         if(listener != null) {
             listener.onClick(v);
         }
+    }
+
+    public FavouriteMusicEntity getItemByPosition(int position){
+        return mFavouriteMusicCollection.get(position);
     }
     public static void setOnClickListener(View.OnClickListener onClickListener) {
         listener = onClickListener;
