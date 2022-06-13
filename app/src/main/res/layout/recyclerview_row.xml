@@ -9,21 +9,58 @@
     android:showDividers="middle"
     android:background="#ffffff" >
 
-<TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="161dp"
-        android:layout_height="wrap_content" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="161dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvYear"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="161dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
 
-    <ImageView
+        <TextView
+            android:id="@+id/tvFormat"
+            android:layout_width="161dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="161dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvCountry"
+            android:layout_width="161dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+<ImageView
         android:id="@+id/ivCover"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
+<Button
+    android:id="@+id/addToCollection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:onClick="addToCollection"
+    android:text="Add to collection"/>
 </LinearLayout>

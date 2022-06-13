@@ -3,5 +3,6 @@
     <string name="artist_search">Artist</string>
     <string name="title_search">Title</string>
     <string name="format_search">Format</string>
+    <string name="year_search">Year</string>
     <string name="search">Search</string>
 </resources>

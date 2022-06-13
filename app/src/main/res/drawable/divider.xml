@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:insetBottom="2dp"
-    android:insetTop="2dp">
+    android:insetBottom="0dp"
+    android:insetTop="0dp">
     <shape
         android:shape="rectangle">
         <size android:width="1dip" />

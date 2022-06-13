@@ -34,6 +34,15 @@
         android:importantForAutofill="no"
         android:inputType="text">
     </EditText>
+
+    <EditText
+        android:id="@+id/etYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/year_search"
+        android:importantForAutofill="no"
+        android:inputType="text">
+    </EditText>
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
