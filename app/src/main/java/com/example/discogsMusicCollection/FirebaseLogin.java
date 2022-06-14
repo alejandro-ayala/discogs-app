@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.FirebaseApp;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,7 +31,7 @@ public class FirebaseLogin extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firebase_login);
         findViewById(R.id.logoutButton).setOnClickListener(this);
-        FirebaseApp.initializeApp(this);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -56,7 +56,7 @@ public class FirebaseLogin extends Activity implements View.OnClickListener {
                                     setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */).
                                     //setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */).
                                             build(),
-                            RC_SIGN_IN
+                                            RC_SIGN_IN
                     );
 
                     //Remains logged in when unique gmail account
