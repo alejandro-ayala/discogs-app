@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/drawable/divider.xml" value="0.215" />
+        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_login.xml" value="0.1546875" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_main.xml" value="0.2394736842105263" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_results.xml" value="0.17083333333333334" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/activity_search.xml" value="0.1984375" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/collection_activity.xml" value="0.20729166666666668" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/favourite_layout.xml" value="0.16979166666666667" />
+        <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/firebas_login.xml" value="0.221875" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/list_row.xml" value="0.17291666666666666" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/main_activity.xml" value="0.20729166666666668" />
         <entry key="..\:/Master/PAS/Myapplication/app/src/main/res/layout/popup_msg.xml" value="0.178125" />
