@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.example.discogsMusicCollection">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,19 +16,19 @@
         android:theme="@style/Theme.Myapplication"
         tools:targetApi="31">
         <activity
-            android:name=".ResultsActivity"
+            android:name="com.example.discogsMusicCollection.ResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".CollectionActivity"
+            android:name="com.example.discogsMusicCollection.CollectionActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name="com.example.discogsMusicCollection.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.discogsMusicCollection.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".FirebaseLogin"
+            android:name="com.example.discogsMusicCollection.FirebaseLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
