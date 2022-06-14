@@ -29,4 +29,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,CollectionActivity.class);
         startActivity(intent);
     }
+
+    public void goToProfile(View view) {
+        Log.d(TAG, "goToProfile!!");
+        Intent intent = new Intent(this,UserProfileActivity.class);
+        startActivity(intent);
+    }
 }

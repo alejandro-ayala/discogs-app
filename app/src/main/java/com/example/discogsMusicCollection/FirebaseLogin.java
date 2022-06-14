@@ -1,110 +1,170 @@
 package com.example.discogsMusicCollection;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.AuthUI;
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
+public class FirebaseLogin extends AppCompatActivity implements View.OnClickListener {
 
-public class FirebaseLogin extends Activity implements View.OnClickListener {
+    static final String LOG_TAG = "btb";
 
-    final static String LOG_TAG = "btb";
+    private FirebaseAuth mAuth;
 
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-
-    private static final int RC_SIGN_IN = 2022;
+    private EditText mEmailField;
+    private EditText mPasswordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.firebase_login);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // user is signed in
-                    CharSequence username = user.getDisplayName();
-                    Toast.makeText(FirebaseLogin.this, getString(R.string.firebase_user_fmt, username), Toast.LENGTH_LONG).show();
-                    Log.i(LOG_TAG, "onAuthStateChanged() " + getString(R.string.firebase_user_fmt, username));
+        //Check logout request
+        boolean logout = false;
+        try {
+            Intent intent = getIntent();
+            logout = intent.getExtras().getBoolean(UserProfileActivity.LOGOUT_REQUEST);
+        }  catch(Exception e) { }
+        if(logout == true) {
+            signOut();
+        }
+        // Fields
+        mEmailField = findViewById(R.id.fieldEmail);
+        mPasswordField = findViewById(R.id.fieldPassword);
 
-                    Intent intent = new Intent(FirebaseLogin.this,MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    // user is signed out
-                    startActivityForResult(
-                            // Get an instance of AuthUI based on the default app
-                            AuthUI.getInstance().
-                                    createSignInIntentBuilder().
-                                    setAvailableProviders(Arrays.asList(
-                                            new AuthUI.IdpConfig.GoogleBuilder().build(),
-                                            new AuthUI.IdpConfig.EmailBuilder().build()
-                                    )).
-                                    setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */).
-                                    //setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */).
-                                            build(),
-                                            RC_SIGN_IN
-                    );
+        // Click listeners
+        findViewById(R.id.buttonSignIn).setOnClickListener(this);
+        findViewById(R.id.buttonAnonymousSignOut).setOnClickListener(this);
+        findViewById(R.id.statusSwitch).setClickable(false);
 
-                    //Remains logged in when unique gmail account
-                    // setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */).
-                    //setIsSmartLockEnabled(BuildConfig.DEBUG /* credentials */, true /* hints */).
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-                }
-            }
-        };
     }
 
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, R.string.signed_in, Toast.LENGTH_SHORT).show();
-                Log.i(LOG_TAG, "onActivityResult " + getString(R.string.signed_in));
-
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, R.string.signed_cancelled, Toast.LENGTH_SHORT).show();
-                Log.i(LOG_TAG, "onActivityResult " + getString(R.string.signed_cancelled));
-                finish();
-            }
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.buttonSignIn) {
+            signInWithCredentials();
+        } else if (i == R.id.buttonAnonymousSignOut) {
+            signOut();
         }
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
-    @Override
-    public void onClick(View v) {
-        mFirebaseAuth.signOut();
-        Log.i(LOG_TAG, getString(R.string.signed_out));
+    private boolean validateLinkForm() {
+        boolean valid = true;
+
+        String email = mEmailField.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmailField.setError(getString(R.string.field_required));
+            valid = false;
+        } else {
+            mEmailField.setError(null);
+        }
+
+        String password = mPasswordField.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPasswordField.setError(getString(R.string.field_required));
+            valid = false;
+        } else {
+            mPasswordField.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void signInWithCredentials() {
+        if (!validateLinkForm()) {
+            return;
+        }
+
+        // Get email and password from form
+        String email = mEmailField.getText().toString();
+        String password = mPasswordField.getText().toString();
+
+        // Create EmailAuthCredential with email and password
+        AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+
+        // [START signin_with_email_and_password]
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.i(LOG_TAG, "signInWithCredentials:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(LOG_TAG, "signInWithCredentials:failure", task.getException());
+                            Toast.makeText(FirebaseLogin.this, "Authentication failed: " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+        // [END signin_with_email_and_password]
+    }
+
+    private void signOut() {
+        mAuth.signOut();
+        updateUI(null);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        TextView uidView = findViewById(R.id.statusId);
+        TextView emailView = findViewById(R.id.statusEmail);
+
+        Switch mSwitch = findViewById(R.id.statusSwitch);
+        boolean isSignedIn = (user != null);
+
+        // Status text
+        if (isSignedIn) {
+            uidView.setText(R.string.signed_in);
+            emailView.setText(getString(R.string.email_fmt, user.getEmail()));
+            mPasswordField.setText("");
+            mEmailField.setText("");
+            Log.i(LOG_TAG, "signedIn: " + getString(R.string.id_fmt, user.getDisplayName()));
+            Intent intent = new Intent(FirebaseLogin.this,MainActivity.class);
+            startActivity(intent);
+        } else {
+            uidView.setText(R.string.signed_out);
+            emailView.setText(null);
+            Log.i(LOG_TAG, "signOut: " + getString(R.string.signed_out));
+        }
+
+        // Button visibility
+        findViewById(R.id.buttonSignIn).setEnabled(!isSignedIn);
+        findViewById(R.id.buttonAnonymousSignOut).setEnabled(isSignedIn);
+        mSwitch.setChecked(isSignedIn);
     }
 }
