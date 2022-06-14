@@ -4,6 +4,7 @@ plugins {
 
 android {
     compileSdk 32
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.example.discogsMusicCollection"

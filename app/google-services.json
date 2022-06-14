@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "606687388631",
-    "project_id": "my-project-adab",
-    "storage_bucket": "my-project-adab.appspot.com"
+    "project_number": "766637927965",
+    "project_id": "pas-app-aa181",
+    "storage_bucket": "pas-app-aa181.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:606687388631:android:af4f37507c436c7df6a192",
+        "mobilesdk_app_id": "1:766637927965:android:7632a6ab7344031cc9e0f4",
         "android_client_info": {
           "package_name": "com.example.discogsMusicCollection"
         }
       },
       "oauth_client": [
         {
-          "client_id": "606687388631-l8bun329e95nlvpmktl22abta8bo73ic.apps.googleusercontent.com",
+          "client_id": "766637927965-pl0kihb1776qso2h0umtpa58spsh56b1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.discogsMusicCollection",
+            "certificate_hash": "0ee87d0028f369754bf673287fef9e44661c385e"
+          }
+        },
+        {
+          "client_id": "766637927965-vkv2ohv7bdtpf5dkknc9nlmesui74i43.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClOWy5hxy57ScMiE9CLipj62CU-Jfn97w"
+          "current_key": "AIzaSyDRkyhd_ISklrUNqrjSSsRNslH-MzuYjfs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "606687388631-l8bun329e95nlvpmktl22abta8bo73ic.apps.googleusercontent.com",
+              "client_id": "766637927965-vkv2ohv7bdtpf5dkknc9nlmesui74i43.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
