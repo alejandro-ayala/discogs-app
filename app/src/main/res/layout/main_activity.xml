@@ -29,6 +29,14 @@
             android:text="Collection"/>
 
         <Button
+            android:id="@+id/buttonUserProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="goToProfile"
+            android:text="User Profile" />
+
+        <Button
             android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,13 +44,5 @@
             android:onClick="logout"
             android:text="@string/user_logout"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonUserProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="goToProfile"
-        android:text="User Profile" />
 
 </LinearLayout>

@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,7 +22,7 @@ import javax.crypto.NoSuchPaddingException;
 public class SignUpActivity extends AppCompatActivity {
 
     static final String TAG = "SignUpActivity";
-
+    static String USER_INFORMATION_FILENAME = "userInformationEncrypted.txt";
     MyAdapterRecycledView myAdapterRecycledView;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -69,12 +67,9 @@ public class SignUpActivity extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(newUser.getUserEmail(),newUser.getUserPassword());
 
             CryptoManager cryptoManager = new CryptoManager();
-            OutputStream encryptedUserParameter = null;
             try {
-                String fileName = "EncryptedUser.txt";
-                FileOutputStream fs = openFileOutput(fileName, Context.MODE_PRIVATE);
-
-                cryptoManager.encrypt(newUser,fs);
+                FileOutputStream userInformationFileOutput = openFileOutput(USER_INFORMATION_FILENAME, Context.MODE_PRIVATE);
+                cryptoManager.encrypt(newUser,userInformationFileOutput);
             }
             catch(IOException e) {
                 e.printStackTrace();
@@ -86,22 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            try {
-                String fileName = "EncryptedUser.txt";
-                FileInputStream fs = openFileInput(fileName);
-                UserProfileParameters decryptNewUser = (UserProfileParameters) cryptoManager.decrypt(fs);
-                Log.d(TAG, "New User decrypt.");
-
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (InvalidKeyException e) {
-                e.printStackTrace();
-            }
             Log.d(TAG, "New User signUp.");
             Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
             startActivity(intent);

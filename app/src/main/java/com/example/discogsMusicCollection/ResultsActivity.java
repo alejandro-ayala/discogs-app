@@ -84,24 +84,6 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
         recyclerView.setLayoutManager(layoutManager);
 
-       /* myAdapterRecycledView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                int position = recyclerView.getChildLayoutPosition(view);
-                String title = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTitle)).getText().toString();
-                String year = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvYear)).getText().toString();
-                String cover = requestList.get(position).getCover();
-                String country = requestList.get(position).getCountry();
-                String label = requestList.get(position).getLabel();
-                String format = requestList.get(position).getFormat();
-                Log.d(TAG, "onClick --> Save release to collection: " + position);
-
-                FavouriteMusicEntity music = new FavouriteMusicEntity(title,country,year,cover,label,format);
-                favouriteMusicViewModel.insert(music);
-            }
-        });*/
         recyclerView.setAdapter(myAdapterRecycledView);
 
 
