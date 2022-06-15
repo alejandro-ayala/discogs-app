@@ -11,6 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.NoSuchPaddingException;
+
 public class SignUpActivity extends AppCompatActivity {
 
     static final String TAG = "SignUpActivity";
@@ -57,6 +65,24 @@ public class SignUpActivity extends AppCompatActivity {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             //AuthCredential newUserCredential = EmailAuthProvider.getCredential(newUser.getUserEmail(), newUser.getUserPassword());
             mAuth.createUserWithEmailAndPassword(newUser.getUserEmail(),newUser.getUserPassword());
+
+            CryptoManager cryptoManager = new CryptoManager();
+            OutputStream encryptedUserParameter = null;
+            try {
+                String fileName = "EncryptedUser.txt";
+                FileOutputStream fs = new FileOutputStream(fileName);
+                cryptoManager.encrypt(newUser,fs);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
+
             Log.d(TAG, "New User signUp.");
             Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
             startActivity(intent);

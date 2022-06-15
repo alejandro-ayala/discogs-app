@@ -1,6 +1,8 @@
 package com.example.discogsMusicCollection;
 
-public class UserProfileParameters {
+import java.io.Serializable;
+
+public class UserProfileParameters implements Serializable {
     private String userEmail;
     private String userPassword;
     private String userName;
