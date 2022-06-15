@@ -57,11 +57,11 @@
         android:text="@string/sign_in" />
 
     <Button
-        android:id="@+id/buttonAnonymousSignOut"
+        android:id="@+id/buttonSignUp"
         android:layout_width="@dimen/field_width_standard"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonSignIn"
-        android:enabled="false"
+        android:enabled="true"
         android:text="@string/sign_out"
         android:layout_toEndOf="@+id/buttonSignIn" />
 

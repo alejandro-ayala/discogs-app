@@ -7,18 +7,44 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_email"
+        android:importantForAutofill="no"
+        android:inputType="text">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_pass"
+        android:importantForAutofill="no"
+        android:inputType="text">
+    </EditText>
+
+    <EditText
+        android:id="@+id/etPasswordRepeated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_repeat_pass"
+        android:importantForAutofill="no"
+        android:inputType="text">
+    </EditText>
+
+    <EditText
+        android:id="@+id/etNameSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_name"
         android:importantForAutofill="no"
         android:inputType="text">
-
-        <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etLastNameSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_lastname"
@@ -27,7 +53,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/etPhone"
+        android:id="@+id/etPhoneSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_phone"
@@ -36,7 +62,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/etUserDirection"
+        android:id="@+id/etUserDirectionSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_direction"
@@ -47,7 +73,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:onClick="saveProfile"
-        android:text="@string/user_save"/>
+        android:onClick="finish"
+        android:text="@string/sign_up"/>
 
 </LinearLayout>

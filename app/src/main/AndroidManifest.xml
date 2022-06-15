@@ -30,6 +30,9 @@
             android:name="com.example.discogsMusicCollection.UserProfileActivity"
             android:exported="false" />
         <activity
+            android:name="com.example.discogsMusicCollection.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.discogsMusicCollection.FirebaseLogin"
             android:exported="true">
             <intent-filter>

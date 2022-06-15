@@ -36,26 +36,27 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firebase_login);
 
-        //Check logout request
-        boolean logout = false;
-        try {
-            Intent intent = getIntent();
-            logout = intent.getExtras().getBoolean(UserProfileActivity.LOGOUT_REQUEST);
-        }  catch(Exception e) { }
-        if(logout == true) {
-            signOut();
-        }
         // Fields
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
 
         // Click listeners
         findViewById(R.id.buttonSignIn).setOnClickListener(this);
-        findViewById(R.id.buttonAnonymousSignOut).setOnClickListener(this);
+        findViewById(R.id.buttonSignUp).setOnClickListener(this);
         findViewById(R.id.statusSwitch).setClickable(false);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        //Check logout request
+        boolean logout = false;
+        try {
+            Intent intent = getIntent();
+            logout = intent.getExtras().getBoolean(MainActivity.LOGOUT_REQUEST);
+        }  catch(Exception e) { }
+        if(logout == true) {
+            signOut();
+        }
 
     }
 
@@ -74,8 +75,8 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         int i = v.getId();
         if (i == R.id.buttonSignIn) {
             signInWithCredentials();
-        } else if (i == R.id.buttonAnonymousSignOut) {
-            signOut();
+        } else if (i == R.id.buttonSignUp) {
+            signUp();
         }
     }
 
@@ -140,6 +141,12 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         updateUI(null);
     }
 
+    private void signUp() {
+        Log.w(LOG_TAG, "signUp");
+        Intent intent = new Intent(FirebaseLogin.this,SignUpActivity.class);
+        startActivity(intent);
+    }
+
     private void updateUI(FirebaseUser user) {
         TextView uidView = findViewById(R.id.statusId);
         TextView emailView = findViewById(R.id.statusEmail);
@@ -164,7 +171,7 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
 
         // Button visibility
         findViewById(R.id.buttonSignIn).setEnabled(!isSignedIn);
-        findViewById(R.id.buttonAnonymousSignOut).setEnabled(isSignedIn);
+
         mSwitch.setChecked(isSignedIn);
     }
 }
