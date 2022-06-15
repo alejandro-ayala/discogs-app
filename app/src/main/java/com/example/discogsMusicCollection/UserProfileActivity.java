@@ -1,5 +1,6 @@
 package com.example.discogsMusicCollection;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -26,6 +28,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Controller controller = new Controller();
+    UserProfileParameters userProfile = new UserProfileParameters();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class UserProfileActivity extends AppCompatActivity {
         try {
             CryptoManager cryptoManager = new CryptoManager();
             FileInputStream userInformationFileInput = openFileInput(SignUpActivity.USER_INFORMATION_FILENAME);
-            UserProfileParameters decryptNewUser = (UserProfileParameters) cryptoManager.decrypt(userInformationFileInput);
+            userProfile = (UserProfileParameters) cryptoManager.decrypt(userInformationFileInput);
             Log.d(TAG, "New User decrypt.");
 
             TextView userName = (TextView) findViewById(R.id.etName);
@@ -45,10 +48,10 @@ public class UserProfileActivity extends AppCompatActivity {
             TextView userPhone = (TextView) findViewById(R.id.etPhone);
             TextView userDirection = (TextView) findViewById(R.id.etUserDirection);
 
-            userName.setText(decryptNewUser.getUserName());
-            userLastName.setText(decryptNewUser.getUserLastName());
-            userPhone.setText(decryptNewUser.getUserPhone());
-            userDirection.setText(decryptNewUser.getUserDirection());
+            userName.setText(userProfile.getUserName());
+            userLastName.setText(userProfile.getUserLastName());
+            userPhone.setText(userProfile.getUserPhone());
+            userDirection.setText(userProfile.getUserDirection());
 
         }
         catch(IOException e) {
@@ -73,7 +76,26 @@ public class UserProfileActivity extends AppCompatActivity {
         TextView userPhone = (TextView) findViewById(R.id.etPhone);
         TextView userDirection = (TextView) findViewById(R.id.etUserDirection);
 
-        //userName.setText();
+        userProfile.setUserName(userName.getText().toString());
+        userProfile.setUserLastName(userLastName.getText().toString());
+        userProfile.setUserPhone(userPhone.getText().toString());
+        userProfile.setUserDirection(userDirection.getText().toString());
+
+
+        try {
+            CryptoManager cryptoManager = new CryptoManager();
+            FileOutputStream userInformationFileOutput = openFileOutput(SignUpActivity.USER_INFORMATION_FILENAME, Context.MODE_PRIVATE);
+            cryptoManager.encrypt(userProfile,userInformationFileOutput);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
 

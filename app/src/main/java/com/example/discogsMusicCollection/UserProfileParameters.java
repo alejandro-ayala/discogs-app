@@ -10,6 +10,14 @@ public class UserProfileParameters implements Serializable {
     private String userPhone;
     private String userDirection;
 
+    public UserProfileParameters(){
+        this.userEmail = "userEmail";
+        this.userPassword = "userPassword";
+        this.userName = "userName";
+        this.userLastName = "userLastName";
+        this.userPhone = "userPhone";
+        this.userDirection = "userDirection";
+    }
     public UserProfileParameters(String userEmail, String userPassword,String userName, String userLastName, String userPhone, String userDirection){
         this.userEmail = userEmail;
         this.userPassword = userPassword;
