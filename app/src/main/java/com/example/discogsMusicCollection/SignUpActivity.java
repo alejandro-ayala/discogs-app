@@ -22,7 +22,7 @@ import javax.crypto.NoSuchPaddingException;
 public class SignUpActivity extends AppCompatActivity {
 
     static final String TAG = "SignUpActivity";
-    static String USER_INFORMATION_FILENAME = "userInformationEncrypted.txt";
+
     MyAdapterRecycledView myAdapterRecycledView;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -68,7 +68,8 @@ public class SignUpActivity extends AppCompatActivity {
 
             CryptoManager cryptoManager = new CryptoManager();
             try {
-                FileOutputStream userInformationFileOutput = openFileOutput(USER_INFORMATION_FILENAME, Context.MODE_PRIVATE);
+                String userInformationFileName = newUser.getUserEmail() + ".txt";
+                FileOutputStream userInformationFileOutput = openFileOutput(userInformationFileName, Context.MODE_PRIVATE);
                 cryptoManager.encrypt(newUser,userInformationFileOutput);
             }
             catch(IOException e) {

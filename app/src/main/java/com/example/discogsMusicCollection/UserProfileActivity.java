@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,7 +41,10 @@ public class UserProfileActivity extends AppCompatActivity {
 
         try {
             CryptoManager cryptoManager = new CryptoManager();
-            FileInputStream userInformationFileInput = openFileInput(SignUpActivity.USER_INFORMATION_FILENAME);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            String userInformationFileName = mAuth.getCurrentUser().getEmail() + ".txt";
+            FileInputStream userInformationFileInput = openFileInput(userInformationFileName);
             userProfile = (UserProfileParameters) cryptoManager.decrypt(userInformationFileInput);
             Log.d(TAG, "New User decrypt.");
 
@@ -84,7 +89,10 @@ public class UserProfileActivity extends AppCompatActivity {
 
         try {
             CryptoManager cryptoManager = new CryptoManager();
-            FileOutputStream userInformationFileOutput = openFileOutput(SignUpActivity.USER_INFORMATION_FILENAME, Context.MODE_PRIVATE);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            String userInformationFileName = mAuth.getCurrentUser().getEmail() + ".txt";
+            FileOutputStream userInformationFileOutput = openFileOutput(userInformationFileName, Context.MODE_PRIVATE);
             cryptoManager.encrypt(userProfile,userInformationFileOutput);
         }
         catch(IOException e) {

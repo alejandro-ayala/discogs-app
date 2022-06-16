@@ -17,10 +17,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:layout_margin="3dp"
-        android:divider="@drawable/divider"
         android:orientation="horizontal"
-        android:dividerPadding="12dip"
-        android:showDividers="middle"
         android:background="#ffffff" >
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -80,6 +77,6 @@
         android:scaleType="fitCenter"
         android:layout_gravity="center"
         android:onClick="addToCollection"
-        android:text="Add to collection"/>
+        android:text="Save"/>
     </LinearLayout>
 </LinearLayout>
