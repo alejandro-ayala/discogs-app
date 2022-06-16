@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,20 +41,37 @@ public class SearchActivity extends AppCompatActivity {
 
         EditText etArtist = (EditText)findViewById(R.id.etArtist);
         EditText etTitle = (EditText)findViewById(R.id.etTitle);
-        EditText etFormat = (EditText)findViewById(R.id.etFormat);
+
         EditText etYear = (EditText)findViewById(R.id.etYear);
 
         String artist = etArtist.getText().toString();
         String title = etTitle.getText().toString();
-        String format = etFormat.getText().toString();
+        String format = "";
+
+        boolean isCheckedCD = ((CheckBox) findViewById(R.id.cbFormatCD)).isChecked();
+        boolean isCheckedVinyl = ((CheckBox) findViewById(R.id.cbFormatVinyl)).isChecked();
+
+        if(isCheckedVinyl) {
+            format = "vinyl";
+        } else if (isCheckedCD) {
+            format = "CD";
+        }
         String year = etYear.getText().toString();
 
         intent.putExtra(ARTIST_TO_SEARCH,artist);
         intent.putExtra(TITLE_TO_SEARCH,title);
         intent.putExtra(FORMAT_TO_SEARCH,format);
-        intent.putExtra(YEAR_TO_SEARCH,format);
+        intent.putExtra(YEAR_TO_SEARCH,year);
 
         startActivity(intent);
 
+    }
+
+    public void onCheckboxClicked(View view) {
+
+        boolean isCheckedCD = ((CheckBox) findViewById(R.id.cbFormatCD)).isChecked();
+        boolean isCheckedVinyl = ((CheckBox) findViewById(R.id.cbFormatVinyl)).isChecked();
+        Log.d(TAG, "onCheckboxClicked!!");
+        //if(isCheckedCD)
     }
 }
