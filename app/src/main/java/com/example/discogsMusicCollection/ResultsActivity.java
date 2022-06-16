@@ -69,7 +69,11 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         Log.d(TAG,response.get(0).getTitle());
 
         for (Discogs.Result element : response) {
-            DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),element.getCountry(), element.getYear(), element.getLabel().toString(), element.getCoverImage(),element.getFormat().toString());
+            String country = "Country: " + element.getCountry();
+            String year = "Year: " + element.getYear();
+            String label = "Label: " + element.getLabel().get(0);
+            String format = "Format: " + element.getFormat().get(0);
+            DiscogsViewModel newItem = new DiscogsViewModel(element.getTitle(),country, year, label, element.getCoverImage(),format);
             requestList.add(newItem);
         }
 

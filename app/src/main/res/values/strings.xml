@@ -61,7 +61,7 @@
     <string name="user_name">Name</string>
     <string name="user_lastname">Last name</string>
     <string name="user_phone">Phone number</string>
-    <string name="user_direction">City</string>
+    <string name="user_direction">Home Address</string>
     <string name="user_save">Save</string>
     <string name="user_logout">Logout</string>
 </resources>

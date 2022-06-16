@@ -84,7 +84,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         TextView countryTextView = viewHolder.country;
         countryTextView.setText(country);
         Picasso.get()
-                .load(cover).resize(700, 700).centerCrop()
+                .load(cover).resize(400, 400).centerCrop()
                 .into(viewHolder.cover);
     }
 
