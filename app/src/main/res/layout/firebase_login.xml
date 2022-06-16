@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/icon"
         android:layout_marginBottom="8dp"
-        android:text="@string/label_emailpassword"
+        android:text=" "
         android:textAlignment="center" />
 
     <TextView

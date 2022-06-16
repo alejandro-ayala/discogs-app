@@ -3,46 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_margin="10dp">
-
+    android:orientation="vertical"
+    android:background="@drawable/backgroundmain">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="top">
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_marginLeft="10dp"
+            android:onClick="logout"
+            android:text="@string/user_logout"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/buttonUserProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="right"
+            android:onClick="goToProfile"
+            android:text="User Profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_gravity="center">
-
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="278dp"
+            android:layout_weight="1"
+            />
         <Button
             android:id="@+id/buttonSearch"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="100dp"
             android:onClick="goToSearch"
             android:text="Search release"/>
 
         <Button
             android:id="@+id/buttonCollection"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="100dp"
             android:layout_gravity="center"
             android:onClick="goToCollection"
-            android:text="Collection"/>
-
-        <Button
-            android:id="@+id/buttonUserProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="goToProfile"
-            android:text="User Profile" />
-
-        <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="logout"
-            android:text="@string/user_logout"/>
+            android:text="Music Collection"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="278dp"
+            android:layout_weight="1"
+            />
     </LinearLayout>
-
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +42,6 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         // Click listeners
         findViewById(R.id.buttonSignIn).setOnClickListener(this);
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
-        findViewById(R.id.statusSwitch).setClickable(false);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -151,7 +149,6 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         TextView uidView = findViewById(R.id.statusId);
         TextView emailView = findViewById(R.id.statusEmail);
 
-        Switch mSwitch = findViewById(R.id.statusSwitch);
         boolean isSignedIn = (user != null);
 
         // Status text
@@ -172,6 +169,5 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         // Button visibility
         findViewById(R.id.buttonSignIn).setEnabled(!isSignedIn);
 
-        mSwitch.setChecked(isSignedIn);
     }
 }
