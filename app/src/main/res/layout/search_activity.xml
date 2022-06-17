@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="@drawable/searchbackground"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/etArtist"
@@ -59,97 +60,16 @@
             android:onClick="onCheckboxClicked"/>
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <CheckBox android:id="@+id/cbGenreRock"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Rock"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenrePop"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Pop"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreLatin"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Latin"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreElectronic"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Electronic"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreJazz"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Jazz"
-            android:onClick="onCheckboxClicked"/>
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <CheckBox android:id="@+id/cbGenreHipHop"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="HipHop"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreFolk"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Folk"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreCountry"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Country"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreSoul"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Soul"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/cbGenreFunk"
-            android:textStyle="bold"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Funk"
-            android:onClick="onCheckboxClicked"/>
-
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/genre_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="338dp"
+        android:entries="@array/genre_array"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"

@@ -50,13 +50,14 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
         String title = intent.getStringExtra(SearchActivity.TITLE_TO_SEARCH);
         String format = intent.getStringExtra(SearchActivity.FORMAT_TO_SEARCH);
         String year = intent.getStringExtra(SearchActivity.YEAR_TO_SEARCH);
+        String genre = intent.getStringExtra(SearchActivity.GENRE_TO_SEARCH);
 
 
         favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
 
         controllerDiscogsAPI.startRetrofitService();
 
-        DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title,format,year);
+        DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title,format,year,genre);
         controllerDiscogsAPI.requestDiscogsSearch(searchRequest);
 
 

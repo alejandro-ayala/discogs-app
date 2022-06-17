@@ -6,13 +6,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.R;
 import com.example.discogsMusicCollection.discogsManager.retrofit.ControllerDiscogsAPI;
 import com.example.discogsMusicCollection.userInterface.adapterRecycledViewSearch;
-import com.example.discogsMusicCollection.R;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class SearchActivity extends AppCompatActivity {
     public static final String TITLE_TO_SEARCH = "title";
     public static final String FORMAT_TO_SEARCH = "format";
     public static final String YEAR_TO_SEARCH = "year";
-
+    public static final String GENRE_TO_SEARCH = "genre";
     adapterRecycledViewSearch adapterRecycledViewSearch;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -48,6 +49,9 @@ public class SearchActivity extends AppCompatActivity {
 
         EditText etYear = (EditText)findViewById(R.id.etYear);
 
+
+        Spinner spMusicGenre = (Spinner)findViewById(R.id.genre_spinner);
+        String musicGenre = spMusicGenre.getSelectedItem().toString();
         String artist = etArtist.getText().toString();
         String title = etTitle.getText().toString();
         String format = "";
@@ -66,6 +70,7 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra(TITLE_TO_SEARCH,title);
         intent.putExtra(FORMAT_TO_SEARCH,format);
         intent.putExtra(YEAR_TO_SEARCH,year);
+        intent.putExtra(GENRE_TO_SEARCH,musicGenre);
 
         startActivity(intent);
 
