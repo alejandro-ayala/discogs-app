@@ -25,7 +25,6 @@
         android:layout_width="@dimen/field_width_standard"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fieldEmail"
-        android:layout_alignStart="@+id/titleAnonymous"
         android:layout_marginStart="-1dp"
         android:layout_marginTop="14dp"
         android:text="@string/sign_in" />
@@ -36,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonSignIn"
         android:enabled="true"
+        android:layout_marginStart="10dp"
         android:text="@string/sign_out"
         android:layout_toEndOf="@+id/buttonSignIn" />
 
@@ -44,8 +44,6 @@
         android:id="@+id/fieldEmail"
         android:layout_width="@dimen/field_width_standard"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleLinking"
-        android:layout_alignStart="@+id/titleAnonymous"
         android:layout_marginStart="1dp"
         android:layout_marginTop="9dp"
         android:hint="@string/hint_email"
