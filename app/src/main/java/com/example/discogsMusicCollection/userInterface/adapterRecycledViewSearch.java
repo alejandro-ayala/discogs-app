@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.userInterface;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.R;
+import com.example.discogsMusicCollection.discogsManager.DiscogsViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycledView.ViewHolder>
+public class adapterRecycledViewSearch extends RecyclerView.Adapter <adapterRecycledViewSearch.ViewHolder>
          {
     private static final String TAG = "MyAdapterRecycledView";
     private LayoutInflater mInflater;
@@ -43,7 +45,7 @@ public class MyAdapterRecycledView extends RecyclerView.Adapter <MyAdapterRecycl
         }
 
     }
-    public MyAdapterRecycledView(Context context, List<DiscogsViewModel> requestList) {
+    public adapterRecycledViewSearch(Context context, List<DiscogsViewModel> requestList) {
         this.mInflater = LayoutInflater.from(context);
         this.mRequestList = requestList;
         mContext = context;

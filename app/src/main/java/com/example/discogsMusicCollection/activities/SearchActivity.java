@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.discogsManager.retrofit.ControllerDiscogsAPI;
+import com.example.discogsMusicCollection.userInterface.adapterRecycledViewSearch;
+import com.example.discogsMusicCollection.R;
+
 public class SearchActivity extends AppCompatActivity {
 
     public static final String TAG = "SearchActivity";
@@ -18,12 +22,12 @@ public class SearchActivity extends AppCompatActivity {
     public static final String FORMAT_TO_SEARCH = "format";
     public static final String YEAR_TO_SEARCH = "year";
 
-    MyAdapterRecycledView myAdapterRecycledView;
+    adapterRecycledViewSearch adapterRecycledViewSearch;
 
     private RecyclerView.LayoutManager layoutManager;
 
     RecyclerView recyclerView;
-    Controller controller = new Controller();
+    ControllerDiscogsAPI controllerDiscogsAPI = new ControllerDiscogsAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

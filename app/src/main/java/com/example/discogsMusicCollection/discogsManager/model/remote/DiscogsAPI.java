@@ -1,6 +1,6 @@
-package com.example.discogsMusicCollection.data.model.remote;
+package com.example.discogsMusicCollection.discogsManager.model.remote;
 
-import com.example.discogsMusicCollection.data.model.Discogs;
+import com.example.discogsMusicCollection.discogsManager.model.Discogs;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

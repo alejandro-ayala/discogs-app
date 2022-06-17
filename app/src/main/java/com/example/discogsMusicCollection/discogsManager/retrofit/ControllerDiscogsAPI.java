@@ -1,10 +1,11 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.discogsManager.retrofit;
 
 
 import android.util.Log;
 
-import com.example.discogsMusicCollection.data.model.Discogs;
-import com.example.discogsMusicCollection.data.model.remote.DiscogsAPI;
+import com.example.discogsMusicCollection.discogsManager.DiscogsViewModel;
+import com.example.discogsMusicCollection.discogsManager.model.Discogs;
+import com.example.discogsMusicCollection.discogsManager.model.remote.DiscogsAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,7 +18,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Controller implements Callback<Discogs> {
+public class ControllerDiscogsAPI implements Callback<Discogs> {
     private static final String TAG = "Controller";
     DiscogsAPI discogsAPI;
     static final String BASE_URL = "https://api.discogs.com/database/";

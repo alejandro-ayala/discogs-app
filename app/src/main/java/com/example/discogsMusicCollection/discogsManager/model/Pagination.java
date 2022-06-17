@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection.data.model;
+package com.example.discogsMusicCollection.discogsManager.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

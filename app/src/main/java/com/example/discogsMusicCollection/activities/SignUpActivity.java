@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,11 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.discogsManager.retrofit.ControllerDiscogsAPI;
+import com.example.discogsMusicCollection.CryptoManager;
+import com.example.discogsMusicCollection.userInterface.adapterRecycledViewSearch;
+import com.example.discogsMusicCollection.R;
+import com.example.discogsMusicCollection.UserProfileParameters;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.FileOutputStream;
@@ -23,12 +28,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     static final String TAG = "SignUpActivity";
 
-    MyAdapterRecycledView myAdapterRecycledView;
+    adapterRecycledViewSearch adapterRecycledViewSearch;
 
     private RecyclerView.LayoutManager layoutManager;
 
     RecyclerView recyclerView;
-    Controller controller = new Controller();
+    ControllerDiscogsAPI controllerDiscogsAPI = new ControllerDiscogsAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

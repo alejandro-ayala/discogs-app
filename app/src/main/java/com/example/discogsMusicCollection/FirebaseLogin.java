@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.discogsMusicCollection.activities.MainActivity;
+import com.example.discogsMusicCollection.activities.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -23,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class FirebaseLogin extends AppCompatActivity implements View.OnClickListener {
 
-    static final String LOG_TAG = "btb";
+    static final String LOG_TAG = "FirebaseLogin";
 
     private FirebaseAuth mAuth;
 
@@ -141,7 +143,7 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
 
     private void signUp() {
         Log.w(LOG_TAG, "signUp");
-        Intent intent = new Intent(FirebaseLogin.this,SignUpActivity.class);
+        Intent intent = new Intent(FirebaseLogin.this, SignUpActivity.class);
         startActivity(intent);
     }
 

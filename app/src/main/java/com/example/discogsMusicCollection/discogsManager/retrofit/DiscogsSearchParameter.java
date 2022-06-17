@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.discogsManager.retrofit;
 
 public class DiscogsSearchParameter {
     private final String artistName;

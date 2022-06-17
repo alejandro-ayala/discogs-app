@@ -1,11 +1,10 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,7 +14,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.discogsMusicCollection.data.model.Discogs;
+import com.example.discogsMusicCollection.discogsManager.retrofit.ControllerDiscogsAPI;
+import com.example.discogsMusicCollection.discogsManager.retrofit.DiscogsSearchParameter;
+import com.example.discogsMusicCollection.discogsManager.DiscogsViewModel;
+import com.example.discogsMusicCollection.userInterface.adapterRecycledViewSearch;
+import com.example.discogsMusicCollection.R;
+import com.example.discogsMusicCollection.discogsManager.retrofit.RetrofitObservable;
+import com.example.discogsMusicCollection.discogsManager.model.Discogs;
 import com.example.discogsMusicCollection.memoryManager.FavouriteMusicEntity;
 import com.example.discogsMusicCollection.memoryManager.FavouriteMusicViewModel;
 
@@ -27,13 +32,13 @@ import java.util.Observer;
 public class ResultsActivity extends AppCompatActivity implements Observer {
 
     public static final String TAG = "SearchActivity";
-    MyAdapterRecycledView myAdapterRecycledView;
+    adapterRecycledViewSearch adapterRecycledViewSearch;
     FavouriteMusicViewModel favouriteMusicViewModel;
     List<DiscogsViewModel> requestList = new ArrayList<DiscogsViewModel>();
     private LinearLayoutManager layoutManager;
 
     RecyclerView recyclerView;
-    Controller controller = new Controller();
+    ControllerDiscogsAPI controllerDiscogsAPI = new ControllerDiscogsAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +54,10 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
         favouriteMusicViewModel = ViewModelProviders.of(this).get(FavouriteMusicViewModel.class);
 
-        controller.startRetrofitService();
+        controllerDiscogsAPI.startRetrofitService();
 
         DiscogsSearchParameter searchRequest = new DiscogsSearchParameter(artist,title,format,year);
-        controller.requestDiscogsSearch(searchRequest);
+        controllerDiscogsAPI.requestDiscogsSearch(searchRequest);
 
 
     }
@@ -87,7 +92,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
                 recyclerView = findViewById(R.id.recyclerView);
                 layoutManager = new LinearLayoutManager(this);
-                myAdapterRecycledView = new MyAdapterRecycledView(this, requestList);
+                adapterRecycledViewSearch = new adapterRecycledViewSearch(this, requestList);
 
                 DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                         layoutManager.getOrientation());
@@ -96,7 +101,7 @@ public class ResultsActivity extends AppCompatActivity implements Observer {
 
                 recyclerView.setLayoutManager(layoutManager);
 
-                recyclerView.setAdapter(myAdapterRecycledView);
+                recyclerView.setAdapter(adapterRecycledViewSearch);
         }
         catch (Exception exception) {
             popupErrorMessage();

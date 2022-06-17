@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.discogsMusicCollection.FirebaseLogin;
+import com.example.discogsMusicCollection.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToCollection(View view) {
         Log.d(TAG, "goToCollection!!");
-        Intent intent = new Intent(this,CollectionActivity.class);
+        Intent intent = new Intent(this, CollectionActivity.class);
         startActivity(intent);
     }
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void logout(View view) {
         // Do something in response to button click
         Log.d(TAG, "logout!!");
-        Intent intent = new Intent(this,FirebaseLogin.class);
+        Intent intent = new Intent(this, FirebaseLogin.class);
         intent.putExtra(LOGOUT_REQUEST,true);
         startActivity(intent);
     }

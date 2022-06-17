@@ -17,22 +17,22 @@
         android:theme="@style/Theme.Myapplication"
         tools:targetApi="31">
         <activity
-            android:name="com.example.discogsMusicCollection.ResultsActivity"
+            android:name="com.example.discogsMusicCollection.activities.ResultsActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.discogsMusicCollection.CollectionActivity"
+            android:name="com.example.discogsMusicCollection.activities.CollectionActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.discogsMusicCollection.SearchActivity"
+            android:name="com.example.discogsMusicCollection.activities.SearchActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.discogsMusicCollection.MainActivity"
+            android:name="com.example.discogsMusicCollection.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.discogsMusicCollection.UserProfileActivity"
+            android:name="com.example.discogsMusicCollection.activities.UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.discogsMusicCollection.SignUpActivity"
+            android:name="com.example.discogsMusicCollection.activities.SignUpActivity"
             android:exported="false" />
         <activity
             android:name="com.example.discogsMusicCollection.FirebaseLogin"

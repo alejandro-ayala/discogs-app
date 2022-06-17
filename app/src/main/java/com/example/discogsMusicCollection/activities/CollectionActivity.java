@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.R;
+import com.example.discogsMusicCollection.userInterface.adapterRecyclerViewFavourite;
 import com.example.discogsMusicCollection.memoryManager.FavouriteMusicEntity;
 import com.example.discogsMusicCollection.memoryManager.FavouriteMusicViewModel;
 

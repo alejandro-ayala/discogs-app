@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.discogsManager;
 
 public class DiscogsViewModel {
     private String title;

@@ -1,9 +1,11 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.discogsMusicCollection.R;
 
 public class AddFavouriteMusicActivity extends AppCompatActivity  {
 

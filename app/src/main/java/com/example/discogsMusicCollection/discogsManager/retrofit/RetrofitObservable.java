@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.discogsManager.retrofit;
 
 import java.util.Observable;
 

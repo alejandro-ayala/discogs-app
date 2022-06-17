@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.discogsManager.retrofit.ControllerDiscogsAPI;
+import com.example.discogsMusicCollection.CryptoManager;
+import com.example.discogsMusicCollection.userInterface.adapterRecycledViewSearch;
+import com.example.discogsMusicCollection.R;
+import com.example.discogsMusicCollection.UserProfileParameters;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.FileInputStream;
@@ -24,12 +29,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
     static final String TAG = "UserProfileActivity";
 
-    MyAdapterRecycledView myAdapterRecycledView;
+    adapterRecycledViewSearch adapterRecycledViewSearch;
 
     private RecyclerView.LayoutManager layoutManager;
 
     RecyclerView recyclerView;
-    Controller controller = new Controller();
+    ControllerDiscogsAPI controllerDiscogsAPI = new ControllerDiscogsAPI();
     UserProfileParameters userProfile = new UserProfileParameters();
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.discogsMusicCollection;
+package com.example.discogsMusicCollection.userInterface;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.discogsMusicCollection.R;
 import com.example.discogsMusicCollection.memoryManager.FavouriteMusicEntity;
 import com.squareup.picasso.Picasso;
 
