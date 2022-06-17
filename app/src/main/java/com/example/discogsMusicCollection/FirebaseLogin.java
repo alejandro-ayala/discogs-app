@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -148,23 +147,20 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateUI(FirebaseUser user) {
-        TextView uidView = findViewById(R.id.statusId);
-        TextView emailView = findViewById(R.id.statusEmail);
+
 
         boolean isSignedIn = (user != null);
 
         // Status text
         if (isSignedIn) {
-            uidView.setText(R.string.signed_in);
-            emailView.setText(getString(R.string.email_fmt, user.getEmail()));
+
             mPasswordField.setText("");
             mEmailField.setText("");
             Log.i(LOG_TAG, "signedIn: " + getString(R.string.id_fmt, user.getDisplayName()));
             Intent intent = new Intent(FirebaseLogin.this,MainActivity.class);
             startActivity(intent);
         } else {
-            uidView.setText(R.string.signed_out);
-            emailView.setText(null);
+
             Log.i(LOG_TAG, "signOut: " + getString(R.string.signed_out));
         }
 

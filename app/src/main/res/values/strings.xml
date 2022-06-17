@@ -20,7 +20,7 @@
     <string name="disconnect">Disconnect</string>
     <string name="loading">Loading…</string>
     <string name="signed_in">Signed In</string>
-    <string name="signed_out">Signed Out</string>
+    <string name="signed_out"> </string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="desc_logo">Universidad Politécnica de Madrid</string>
@@ -51,7 +51,7 @@
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
     <string name="anonymous_sign_in">Anonymous Sign In</string>
-    <string name="account_linking">Login interface customization example</string>
+    <string name="account_linking"> </string>
     <string name="status_logged">Logged</string>
     <string name="field_required">Field required.</string>
 
