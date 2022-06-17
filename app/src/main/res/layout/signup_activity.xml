@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/user_pass"
         android:importantForAutofill="no"
+        android:password="true"
         android:inputType="text">
     </EditText>
 
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_repeat_pass"
+        android:password="true"
         android:importantForAutofill="no"
         android:inputType="text">
     </EditText>
