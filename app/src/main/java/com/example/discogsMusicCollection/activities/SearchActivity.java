@@ -59,11 +59,10 @@ public class SearchActivity extends AppCompatActivity {
         boolean isCheckedCD = ((CheckBox) findViewById(R.id.cbFormatCD)).isChecked();
         boolean isCheckedVinyl = ((CheckBox) findViewById(R.id.cbFormatVinyl)).isChecked();
 
-        if(isCheckedVinyl) {
-            format = "vinyl";
-        } else if (isCheckedCD) {
-            format = "CD";
-        }
+        if(isCheckedVinyl)format = "vinyl";
+        else if (isCheckedCD)format = "CD";
+        if(musicGenre.equals("Select genre"))musicGenre ="";
+
         String year = etYear.getText().toString();
 
         intent.putExtra(ARTIST_TO_SEARCH,artist);

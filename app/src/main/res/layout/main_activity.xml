@@ -12,8 +12,8 @@
         android:layout_gravity="top">
         <Button
             android:id="@+id/buttonLogout"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
             android:layout_gravity="top"
             android:layout_marginLeft="10dp"
             android:onClick="logout"
@@ -25,8 +25,8 @@
             />
         <Button
             android:id="@+id/buttonUserProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:onClick="goToProfile"
@@ -46,8 +46,8 @@
 
         <Button
             android:id="@+id/buttonSearch"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:onClick="goToSearch"
@@ -61,8 +61,8 @@
 
         <Button
             android:id="@+id/buttonCollection"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:onClick="goToCollection"
