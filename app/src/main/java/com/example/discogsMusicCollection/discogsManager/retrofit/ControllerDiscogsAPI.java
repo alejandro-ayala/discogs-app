@@ -47,7 +47,7 @@ public class ControllerDiscogsAPI implements Callback<Discogs> {
 
             Discogs discogsResponse = response.body();
             List<Discogs.Result> results = discogsResponse.getResults();
-            Log.d(TAG,results.get(0).getTitle());
+
 
             RetrofitObservable.getInstance(). notifyObserverWithResponse(results);
 
