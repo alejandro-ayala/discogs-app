@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import javax.crypto.NoSuchPaddingException;
 
@@ -74,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
             CryptoManager cryptoManager = new CryptoManager();
             try {
                 String userInformationFileName = newUser.getUserEmail() + ".txt";
-                FileOutputStream userInformationFileOutput = openFileOutput(userInformationFileName, Context.MODE_PRIVATE);
+                FileOutputStream userInformationFileOutput = openFileOutput(userInformationFileName.toLowerCase(Locale.ROOT), Context.MODE_PRIVATE);
                 cryptoManager.encrypt(newUser,userInformationFileOutput);
             }
             catch(IOException e) {

@@ -35,7 +35,10 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firebase_login);
-
+        if (getIntent().getBooleanExtra("EXIT", false))
+        {
+            finish();
+        }
         // Fields
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
